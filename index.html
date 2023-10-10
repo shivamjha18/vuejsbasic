@@ -1,0 +1,96 @@
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app"><h2>{{ message }}</h2>
+    <h3>{{ counter }}</h3>
+    <button @click="increment">+</button>
+    <h2 v-if="show">Shivam</h2>
+    <button @click="toggle">Toogle</button>
+    <p>
+        <h3 v-for="item in cart">
+            {{item}}
+            <button @click="Addtocart(item)">Add</button>
+        </h3>
+    </p>
+    <h2>Add to Cart</h2>
+    <p>
+        <h3 v-for="item in addtocart">
+            {{item}}
+        </h3>
+       
+    </p>
+
+    <ul v-for="(key,value) in person ">
+         <h3>{{value}}:{{key}}</h3>
+    </ul>
+
+    <p>Forms</p>
+    <input type="text" v-model="name">
+    <p>{{name}}</p>
+    <input type="text" v-model="password">
+    <p>{{password}}</p>
+    <input type="checkbox" v-model="agree">agree?<p></p> 
+    <select v-model="country">
+        <option value="IN">India</option>
+        <option value="UK">Uk</option>
+        <option value="US">US</option>
+    </select>
+    <p>{{country}}</p>
+    <button v-if="agree">submit</button>
+
+    <h3>Modifiers</h3>
+    <input type="number" v-model.number="a"><br>
+    <input type="number" v-model.number="b">
+    <h3>{{a+b}}</h3>
+
+    <h3>Hooks</h3>
+</div>
+
+
+<script>
+const options = {
+  data() {
+    return {
+      message: "vueapp",
+      counter:1,
+      show:true,
+      cart:['apple','mango','papaya'],
+      addtocart:[],
+      person:{name:'shivam',age:22,branch:'cse'},
+      name:'',
+      password:'',
+      agree:false,
+      country:'',
+      a:0,
+      b:0,
+    };
+  },
+  methods:{
+    increment(){
+       this.counter++;
+    },
+    toggle(){
+        this.show=!this.show;
+    },
+    Addtocart(x){
+        this.addtocart.push(x);
+    },
+    created(){
+        console.log("created")
+    },
+    mounted(){
+         console.log("mounted")
+    },
+    updated(){
+        console.log("updated")
+    },
+    unmounted(){
+        console.log("unmounted")
+    },
+
+  }
+};
+const app = Vue.createApp(options);
+const vm = app.mount("#app");
+</script>
